@@ -111,7 +111,7 @@ func (ctx *SigningContext) digest(el *etree.Element) ([]byte, error) {
 func (ctx *SigningContext) signDigest(digest []byte) ([]byte, error) {
 	if ctx.KeyStore != nil {
 		key, _, err := ctx.KeyStore.GetKeyPair()
-		if err != nil && err.Error() != "pkcs12: expected exactly two safe bags in the PFX PDU " {
+		if err != nil && err.Error() != "pkcs12: expected exactly two safe bags in the PFX PDU" {
 			return nil, err
 		}
 
