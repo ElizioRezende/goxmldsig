@@ -33,7 +33,7 @@ type SigningContext struct {
 
 func NewDefaultSigningContext(ks X509KeyStore) *SigningContext {
 	return &SigningContext{
-		Hash:          crypto.SHA256,
+		Hash:          crypto.SHA1,
 		KeyStore:      ks,
 		IdAttribute:   DefaultIdAttr,
 		Prefix:        DefaultPrefix,
@@ -51,7 +51,7 @@ func NewSigningContext(signer crypto.Signer, certs [][]byte) (*SigningContext, e
 		return nil, errors.New("signer cannot be nil for NewSigningContext")
 	}
 	ctx := &SigningContext{
-		Hash:          crypto.SHA256,
+		Hash:          crypto.SHA1,
 		IdAttribute:   DefaultIdAttr,
 		Prefix:        DefaultPrefix,
 		Canonicalizer: MakeC14N11Canonicalizer(),
