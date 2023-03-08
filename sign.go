@@ -126,7 +126,7 @@ func (ctx *SigningContext) signDigest(digest []byte) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-
+		//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
 		return rawSignature, nil
 	}
 }
@@ -138,7 +138,7 @@ func (ctx *SigningContext) getCerts() ([][]byte, error) {
 		}
 
 		_, cert, err := ctx.KeyStore.GetKeyPair()
-		if err != nil {
+		if err != nil && err.Error() != "pkcs12: expected exactly two safe bags in the PFX PDU" {
 			return nil, err
 		}
 
