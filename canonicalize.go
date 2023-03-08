@@ -97,7 +97,7 @@ func (c *c14N11Canonicalizer) Algorithm() AlgorithmID {
 	if c.comments {
 		return CanonicalXML11WithCommentsAlgorithmId
 	}
-	return CanonicalXML11AlgorithmId
+	return CanonicalXML10RecAlgorithmId
 }
 
 type c14N10RecCanonicalizer struct {
