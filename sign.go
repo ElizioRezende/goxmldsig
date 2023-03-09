@@ -182,7 +182,7 @@ func (ctx *SigningContext) constructSignedInfo(el *etree.Element, enveloped bool
 
 	dataId := el.SelectAttrValue(ctx.IdAttribute, "")
 	if dataId == "" {
-		reference.CreateAttr(URIAttr, "")
+		reference.CreateAttr(URIAttr, "#NFe52230327295143000124650850000000831530227763")
 	} else {
 		reference.CreateAttr(URIAttr, "#"+dataId)
 	}
@@ -296,7 +296,7 @@ func (ctx *SigningContext) SignEnveloped(el *etree.Element) (*etree.Element, err
 		return nil, err
 	}
 
-	ret := el.Parent().Copy()
+	ret := el.Copy()
 	ret.Child = append(ret.Child, sig)
 
 	return ret, nil
