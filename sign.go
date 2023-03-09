@@ -33,7 +33,7 @@ type SigningContext struct {
 
 func NewDefaultSigningContext(ks X509KeyStore) *SigningContext {
 	return &SigningContext{
-		Hash:          crypto.SHA1,
+		Hash:          crypto.SHA256,
 		KeyStore:      ks,
 		IdAttribute:   DefaultIdAttr,
 		Prefix:        DefaultPrefix,
@@ -51,7 +51,7 @@ func NewSigningContext(signer crypto.Signer, certs [][]byte) (*SigningContext, e
 		return nil, errors.New("signer cannot be nil for NewSigningContext")
 	}
 	ctx := &SigningContext{
-		Hash:          crypto.SHA1,
+		Hash:          crypto.SHA256,
 		IdAttribute:   DefaultIdAttr,
 		Prefix:        DefaultPrefix,
 		Canonicalizer: MakeC14N11Canonicalizer(),
@@ -159,7 +159,7 @@ func (ctx *SigningContext) constructSignedInfo(el *etree.Element, enveloped bool
 		return nil, errors.New("unsupported signature method")
 	}
 
-	digest, err := ctx.digest(el.Parent())
+	digest, err := ctx.digest(el)
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +296,7 @@ func (ctx *SigningContext) SignEnveloped(el *etree.Element) (*etree.Element, err
 		return nil, err
 	}
 
-	ret := el.Copy()
+	ret := el.Parent().Copy()
 	ret.Child = append(ret.Child, sig)
 
 	return ret, nil
