@@ -159,7 +159,7 @@ func (ctx *SigningContext) constructSignedInfo(el *etree.Element, enveloped bool
 		return nil, errors.New("unsupported signature method")
 	}
 
-	digest, err := ctx.digest(el.Parent().Parent())
+	digest, err := ctx.digest(el.Parent())
 	if err != nil {
 		return nil, err
 	}
